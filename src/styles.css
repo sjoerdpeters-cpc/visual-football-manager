@@ -76,11 +76,9 @@ button {
 }
 
 .brand-panel,
-.side-menu,
 .location-panel,
 .overview-button,
-.bottom-gallery,
-.status-chip {
+.bottom-gallery {
   position: absolute;
   z-index: 5;
 }
@@ -126,52 +124,6 @@ button {
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-}
-
-.side-menu {
-  top: 13.5vh;
-  left: 1.4vw;
-  width: min(220px, 20vw);
-  display: grid;
-  gap: 5px;
-  padding: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: rgba(3, 10, 9, 0.66);
-  backdrop-filter: blur(16px);
-}
-
-.side-menu-item {
-  display: grid;
-  grid-template-columns: 18px 1fr 14px;
-  align-items: center;
-  min-height: 36px;
-  gap: 8px;
-  width: 100%;
-  padding: 0 9px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  color: rgba(247, 255, 249, 0.92);
-  background: transparent;
-  text-align: left;
-  font-size: 10px;
-  cursor: pointer;
-  transition: 180ms ease;
-}
-
-.side-menu-item span {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.side-menu-item:hover,
-.side-menu-item-active {
-  border-color: rgba(112, 255, 190, 0.32);
-  color: #ffffff;
-  background: linear-gradient(135deg, rgba(40, 166, 99, 0.9), rgba(28, 112, 77, 0.64));
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24), 0 0 22px rgba(72, 255, 178, 0.12);
 }
 
 .hotspot-layer {
@@ -236,27 +188,9 @@ button {
   }
 }
 
-.status-chip {
-  top: 3vh;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transform: translateX(-50%);
-  padding: 10px 14px;
-  border: 1px solid rgba(132, 255, 207, 0.2);
-  border-radius: 999px;
-  color: rgba(238, 255, 246, 0.92);
-  background: rgba(4, 13, 11, 0.58);
-  backdrop-filter: blur(16px);
-  font-size: 10px;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
 .location-panel {
   top: 50%;
-  right: 3vw;
+  right: 1.4vw;
   translate: 0 -50%;
   width: min(520px, 38vw);
   max-height: 76vh;
@@ -474,26 +408,6 @@ button {
   .club-mark {
     width: 44px;
     height: 44px;
-  }
-
-  .side-menu {
-    top: 86px;
-    left: 12px;
-    width: 46px;
-    padding: 6px;
-  }
-
-  .side-menu-item {
-    grid-template-columns: 1fr;
-    place-items: center;
-    min-height: 34px;
-    padding: 0;
-  }
-
-  .side-menu-item span,
-  .side-menu-item svg:last-child,
-  .status-chip {
-    display: none;
   }
 
   .location-panel {

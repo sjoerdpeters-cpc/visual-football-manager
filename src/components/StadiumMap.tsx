@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Compass, RotateCcw, Shield } from 'lucide-react';
+import { RotateCcw, Shield } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import {
   locations,
   overviewImage,
-  trainingFieldLevels,
+  upgradeLevelData,
   type StadiumLocation,
 } from '../data/locations';
 import { BottomGallery } from './BottomGallery';
@@ -13,32 +13,48 @@ import { LocationPanel } from './LocationPanel';
 
 export function StadiumMap() {
   const [selectedId, setSelectedId] = useState('stadium');
-  const [trainingLevel, setTrainingLevel] = useState(1);
+  const [locationLevels, setLocationLevels] = useState<Record<string, number>>({
+    'training-field': 1,
+    'light-masts': 1,
+  });
   const enhancedLocations = useMemo(() => {
-    const trainingVariant = trainingFieldLevels[trainingLevel - 1];
-
     return locations.map((location) => {
-      if (location.id !== 'training-field') {
+      const levels = upgradeLevelData[location.id];
+
+      if (!levels) {
         return location;
       }
 
+      const currentLevel = locationLevels[location.id] ?? 1;
+      const variant = levels[currentLevel - 1] ?? levels[0];
+
       return {
         ...location,
-        image: trainingVariant.image,
-        level: trainingVariant.level,
-        status: trainingVariant.status,
-        features: trainingVariant.features,
+        image: variant.image,
+        level: variant.level,
+        status: variant.status,
+        features: variant.features,
       };
     });
-  }, [trainingLevel]);
+  }, [locationLevels]);
   const selected = enhancedLocations.find((location) => location.id === selectedId) ?? enhancedLocations[0];
   const overviewLocation = enhancedLocations.find((location) => location.id === 'stadium') ?? enhancedLocations[0];
   const detailOpen = selected.id !== 'stadium';
+  const selectedUpgradeLevels = upgradeLevelData[selected.id];
   const selectLocation = (location: StadiumLocation) => {
     setSelectedId((currentId) => (currentId === location.id ? overviewLocation.id : location.id));
   };
   const closeDetail = () => setSelectedId(overviewLocation.id);
-  const upgradeTrainingField = () => setTrainingLevel((level) => Math.min(level + 1, trainingFieldLevels.length));
+  const upgradeSelectedLocation = () => {
+    if (!selectedUpgradeLevels) {
+      return;
+    }
+
+    setLocationLevels((levels) => ({
+      ...levels,
+      [selected.id]: Math.min((levels[selected.id] ?? 1) + 1, selectedUpgradeLevels.length),
+    }));
+  };
 
   return (
     <main className="stadium-shell">
@@ -83,15 +99,11 @@ export function StadiumMap() {
 
       {detailOpen && (
         <>
-          <div className="status-chip">
-            <Compass size={17} />
-            Focus: {selected.shortName}
-          </div>
-
           <LocationPanel
             location={selected}
-            onUpgrade={selected.id === 'training-field' ? upgradeTrainingField : undefined}
-            canUpgrade={selected.id === 'training-field' && trainingLevel < trainingFieldLevels.length}
+            onUpgrade={selectedUpgradeLevels ? upgradeSelectedLocation : undefined}
+            canUpgrade={Boolean(selectedUpgradeLevels && selected.level < selectedUpgradeLevels.length)}
+            maxLevel={selectedUpgradeLevels?.length}
           />
 
           <button className="overview-button" type="button" onClick={closeDetail}>

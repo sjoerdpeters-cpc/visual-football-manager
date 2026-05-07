@@ -6,16 +6,13 @@ type LocationPanelProps = {
   location: StadiumLocation;
   onUpgrade?: () => void;
   canUpgrade?: boolean;
+  maxLevel?: number;
 };
 
-export function LocationPanel({ location, onUpgrade, canUpgrade = false }: LocationPanelProps) {
+export function LocationPanel({ location, onUpgrade, canUpgrade = false, maxLevel = 5 }: LocationPanelProps) {
   const Icon = location.icon;
-  const isTrainingField = location.id === 'training-field';
-  const buttonLabel = isTrainingField
-    ? canUpgrade
-      ? `Upgrade naar level ${location.level + 1}`
-      : 'Max level bereikt'
-    : 'Upgrade plannen';
+  const isUpgradeable = Boolean(onUpgrade);
+  const buttonLabel = canUpgrade ? `Upgrade naar level ${location.level + 1}` : `Max level ${maxLevel} bereikt`;
 
   return (
     <AnimatePresence mode="wait">
@@ -60,7 +57,7 @@ export function LocationPanel({ location, onUpgrade, canUpgrade = false }: Locat
           ))}
         </div>
 
-        {isTrainingField && (
+        {isUpgradeable && (
           <button
             className="upgrade-button"
             type="button"

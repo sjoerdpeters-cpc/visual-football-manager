@@ -8,6 +8,7 @@ import {
   Trophy,
   type LucideIcon,
 } from 'lucide-react';
+import upgradeLevels from './upgradeLevels.json';
 
 export type StadiumLocation = {
   id: string;
@@ -25,45 +26,14 @@ export type StadiumLocation = {
   icon: LucideIcon;
 };
 
-export type TrainingFieldLevel = {
+export type UpgradeLevel = {
   level: number;
   image: string;
   status: string;
   features: string[];
 };
 
-export const trainingFieldLevels: TrainingFieldLevel[] = [
-  {
-    level: 1,
-    image: '/assets/stadium/training/level-1.png',
-    status: 'Basisveld',
-    features: ['Enkel trainingsveld', 'Basis belijning', 'Open terrein', 'Lage capaciteit'],
-  },
-  {
-    level: 2,
-    image: '/assets/stadium/training/level-2.png',
-    status: 'Verbeterd veld',
-    features: ['Betere grasmat', 'Kleine tribune', 'Materiaalzone', 'Verbeterde routing'],
-  },
-  {
-    level: 3,
-    image: '/assets/stadium/training/level-3.png',
-    status: 'Professioneel',
-    features: ['Verlichting', 'Jeugdfaciliteiten', 'Analyseplek', 'Herstelzone'],
-  },
-  {
-    level: 4,
-    image: '/assets/stadium/training/level-4.png',
-    status: 'Elite complex',
-    features: ['Meerdere velden', 'Indoor support', 'Performance data', 'Medische unit'],
-  },
-  {
-    level: 5,
-    image: '/assets/stadium/training/level-5.png',
-    status: 'Topniveau',
-    features: ['Academy campus', 'Volledige verlichting', 'Pro stafruimtes', 'Maximale ontwikkeling'],
-  },
-];
+export const upgradeLevelData = upgradeLevels as Record<string, UpgradeLevel[]>;
 
 export const locations: StadiumLocation[] = [
   {
@@ -86,10 +56,10 @@ export const locations: StadiumLocation[] = [
     description:
       'Een verlicht trainingscomplex naast het stadion waar selectie, jeugdteams en herstelgroepen dagelijks werken.',
     overviewPosition: { x: 78, y: 43 },
-    image: trainingFieldLevels[0].image,
+    image: upgradeLevelData['training-field'][0].image,
     level: 1,
-    status: trainingFieldLevels[0].status,
-    features: trainingFieldLevels[0].features,
+    status: upgradeLevelData['training-field'][0].status,
+    features: upgradeLevelData['training-field'][0].features,
     icon: Goal,
   },
   {
@@ -125,10 +95,10 @@ export const locations: StadiumLocation[] = [
     description:
       'De lichtmasten geven het complex een wedstrijddaggevoel en maken avondtrainingen en tv-productie mogelijk.',
     overviewPosition: { x: 69, y: 33 },
-    image: '/assets/stadium/light-masts.jpg',
-    level: 4,
-    status: 'Wedstrijdklaar',
-    features: ['LED-armaturen', 'Tv-norm', 'Energieprofiel A', 'Remote dimming'],
+    image: upgradeLevelData['light-masts'][0].image,
+    level: 1,
+    status: upgradeLevelData['light-masts'][0].status,
+    features: upgradeLevelData['light-masts'][0].features,
     icon: Lightbulb,
   },
   {
