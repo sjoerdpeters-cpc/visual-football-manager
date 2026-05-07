@@ -189,16 +189,20 @@ button {
 }
 
 .location-panel {
-  top: 50%;
-  right: 1.4vw;
-  translate: 0 -50%;
-  width: min(1180px, 82vw);
-  max-height: 76vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 17vh;
+  translate: 0;
+  width: auto;
+  max-height: none;
   overflow: auto;
-  padding: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 8px;
-  background: rgba(4, 12, 12, 0.72);
+  padding: 22px 24px;
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, rgba(3, 9, 8, 0.92), rgba(4, 12, 12, 0.8)),
+    rgba(4, 12, 12, 0.78);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(20px);
 }
@@ -236,10 +240,11 @@ button {
 
 .panel-body {
   display: grid;
-  grid-template-columns: minmax(520px, 1.55fr) minmax(320px, 0.95fr);
-  gap: 22px;
+  grid-template-columns: minmax(620px, 1.75fr) minmax(360px, 0.85fr);
+  gap: 24px;
   margin-top: 16px;
   align-items: stretch;
+  min-height: calc(83vh - 76px);
 }
 
 .panel-content {
@@ -404,7 +409,7 @@ button {
 
 .overview-button {
   left: 1.4vw;
-  bottom: 9.8vh;
+  bottom: calc(17vh + 16px);
   padding: 0 18px;
   background: rgba(5, 15, 14, 0.76);
   backdrop-filter: blur(16px);
@@ -499,12 +504,13 @@ button {
   }
 
   .location-panel {
-    top: auto;
-    right: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
     translate: 0;
-    bottom: calc(15vh + 12px);
-    width: calc(100vw - 20px);
-    max-height: 52vh;
+    bottom: 15vh;
+    width: auto;
+    max-height: none;
     padding: 14px;
     overflow: auto;
   }
@@ -518,6 +524,7 @@ button {
   .panel-body {
     grid-template-columns: 1fr;
     gap: 14px;
+    min-height: 0;
   }
 
   .panel-title-row h2 {
