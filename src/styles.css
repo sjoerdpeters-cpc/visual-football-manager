@@ -305,13 +305,68 @@ button {
 
 .upgrade-button {
   width: 100%;
-  margin-top: 18px;
 }
 
 .upgrade-button:disabled {
   cursor: not-allowed;
   opacity: 0.54;
   filter: saturate(0.6);
+}
+
+.upgrade-panel {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid rgba(116, 255, 198, 0.16);
+  border-radius: 8px;
+  background: rgba(17, 48, 38, 0.22);
+}
+
+.upgrade-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(240, 255, 247, 0.78);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.upgrade-header strong {
+  color: #82ffca;
+  font-size: 12px;
+}
+
+.level-track {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.level-step {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: rgba(240, 255, 247, 0.48);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.level-step-complete,
+.level-step-current {
+  border-color: rgba(116, 255, 198, 0.44);
+  color: #ecfff6;
+  background: rgba(42, 156, 103, 0.34);
+}
+
+.level-step-current {
+  box-shadow: 0 0 18px rgba(84, 255, 183, 0.26);
 }
 
 .overview-button {
@@ -446,7 +501,6 @@ button {
 
   .upgrade-button {
     min-height: 42px;
-    margin-top: 12px;
   }
 
   .overview-button {

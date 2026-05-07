@@ -58,15 +58,43 @@ export function LocationPanel({ location, onUpgrade, canUpgrade = false, maxLeve
         </div>
 
         {isUpgradeable && (
-          <button
-            className="upgrade-button"
-            type="button"
-            onClick={onUpgrade}
-            disabled={!canUpgrade}
-          >
-            <ArrowUpRight size={18} />
-            {buttonLabel}
-          </button>
+          <div className="upgrade-panel">
+            <div className="upgrade-header">
+              <span>Upgrade niveau</span>
+              <strong>
+                {location.level}/{maxLevel}
+              </strong>
+            </div>
+
+            <div className="level-track" aria-label={`Huidig level ${location.level} van ${maxLevel}`}>
+              {Array.from({ length: maxLevel }, (_, index) => {
+                const level = index + 1;
+                const isComplete = level < location.level;
+                const isCurrent = level === location.level;
+
+                return (
+                  <div
+                    className={`level-step ${isComplete ? 'level-step-complete' : ''} ${
+                      isCurrent ? 'level-step-current' : ''
+                    }`}
+                    key={level}
+                  >
+                    <span>{level}</span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              className="upgrade-button"
+              type="button"
+              onClick={onUpgrade}
+              disabled={!canUpgrade}
+            >
+              <ArrowUpRight size={18} />
+              {buttonLabel}
+            </button>
+          </div>
         )}
       </motion.aside>
     </AnimatePresence>
