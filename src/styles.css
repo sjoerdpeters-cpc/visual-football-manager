@@ -192,15 +192,24 @@ button {
   top: 50%;
   right: 1.4vw;
   translate: 0 -50%;
-  width: min(520px, 38vw);
+  width: min(1180px, 82vw);
   max-height: 76vh;
-  overflow: hidden;
+  overflow: auto;
   padding: 22px;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 8px;
   background: rgba(4, 12, 12, 0.72);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(20px);
+}
+
+.location-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.location-panel::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(116, 255, 198, 0.26);
 }
 
 .panel-kicker,
@@ -216,11 +225,35 @@ button {
 
 .panel-image {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  margin-top: 16px;
+  height: 100%;
+  min-height: 390px;
   object-fit: cover;
+  object-position: center;
+  margin-top: 0;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.panel-body {
+  display: grid;
+  grid-template-columns: minmax(520px, 1.55fr) minmax(320px, 0.95fr);
+  gap: 22px;
+  margin-top: 16px;
+  align-items: stretch;
+}
+
+.panel-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.panel-content .upgrade-panel {
+  margin-top: auto;
+}
+
+.panel-content .feature-list {
+  margin-bottom: 18px;
 }
 
 .panel-title-row {
@@ -470,14 +503,21 @@ button {
     right: 10px;
     translate: 0;
     bottom: calc(15vh + 12px);
-    width: min(520px, calc(100vw - 20px));
+    width: calc(100vw - 20px);
     max-height: 52vh;
     padding: 14px;
     overflow: auto;
   }
 
   .panel-image {
+    min-height: 180px;
+    height: auto;
     aspect-ratio: 16 / 8;
+  }
+
+  .panel-body {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .panel-title-row h2 {
