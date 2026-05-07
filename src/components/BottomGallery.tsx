@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import type { StadiumLocation } from '../data/locations';
+import { upgradeLevelData, type StadiumLocation } from '../data/locations';
 
 type BottomGalleryProps = {
   locations: StadiumLocation[];
@@ -16,17 +16,22 @@ export function BottomGallery({ locations, selectedId, onSelect }: BottomGallery
       transition={{ delay: 0.18, duration: 0.42 }}
       aria-label="Locatie previews"
     >
-      {locations.map((location) => (
-        <button
-          className={`gallery-card ${selectedId === location.id ? 'gallery-card-active' : ''}`}
-          type="button"
-          key={location.id}
-          onClick={() => onSelect(location)}
-        >
-          <img src={location.image} alt="" />
-          <span>{location.name}</span>
-        </button>
-      ))}
+      {locations.map((location) => {
+        const isUpgradeable = Boolean(upgradeLevelData[location.id]);
+
+        return (
+          <button
+            className={`gallery-card ${selectedId === location.id ? 'gallery-card-active' : ''}`}
+            type="button"
+            key={location.id}
+            onClick={() => onSelect(location)}
+          >
+            <img src={location.image} alt="" />
+            <span>{location.name}</span>
+            {isUpgradeable && <strong className="gallery-level-badge">L{location.level}</strong>}
+          </button>
+        );
+      })}
     </motion.nav>
   );
 }

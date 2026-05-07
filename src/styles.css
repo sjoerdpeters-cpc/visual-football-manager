@@ -216,6 +216,13 @@ button {
   background: rgba(116, 255, 198, 0.26);
 }
 
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .panel-kicker,
 .feature-heading {
   display: flex;
@@ -225,6 +232,24 @@ button {
   font-size: 10px;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.panel-close-button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  color: rgba(247, 255, 249, 0.88);
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+}
+
+.panel-close-button:hover {
+  border-color: rgba(116, 255, 198, 0.42);
+  color: #ffffff;
+  background: rgba(39, 133, 88, 0.24);
 }
 
 .panel-image {
@@ -476,6 +501,24 @@ button {
   font-size: 10px;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.gallery-level-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid rgba(123, 255, 203, 0.34);
+  border-radius: 999px;
+  color: #99ffd4;
+  background: rgba(4, 12, 13, 0.76);
+  font-size: 10px;
+  font-weight: 900;
 }
 
 .gallery-card-active {

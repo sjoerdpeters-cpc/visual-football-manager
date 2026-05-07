@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { RotateCcw, Shield } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   locations,
   overviewImage,
@@ -45,6 +45,22 @@ export function StadiumMap() {
     setSelectedId((currentId) => (currentId === location.id ? overviewLocation.id : location.id));
   };
   const closeDetail = () => setSelectedId(overviewLocation.id);
+
+  useEffect(() => {
+    if (!detailOpen) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeDetail();
+      }
+    };
+
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [detailOpen, overviewLocation.id]);
+
   const upgradeSelectedLocation = () => {
     if (!selectedUpgradeLevels) {
       return;
@@ -102,6 +118,7 @@ export function StadiumMap() {
           <LocationPanel
             location={selected}
             onUpgrade={selectedUpgradeLevels ? upgradeSelectedLocation : undefined}
+            onClose={closeDetail}
             canUpgrade={Boolean(selectedUpgradeLevels && selected.level < selectedUpgradeLevels.length)}
             maxLevel={selectedUpgradeLevels?.length}
           />

@@ -1,15 +1,22 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRight, Gauge, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Gauge, ShieldCheck, Sparkles, X } from 'lucide-react';
 import type { StadiumLocation } from '../data/locations';
 
 type LocationPanelProps = {
   location: StadiumLocation;
   onUpgrade?: () => void;
+  onClose: () => void;
   canUpgrade?: boolean;
   maxLevel?: number;
 };
 
-export function LocationPanel({ location, onUpgrade, canUpgrade = false, maxLevel = 5 }: LocationPanelProps) {
+export function LocationPanel({
+  location,
+  onUpgrade,
+  onClose,
+  canUpgrade = false,
+  maxLevel = 5,
+}: LocationPanelProps) {
   const Icon = location.icon;
   const isUpgradeable = Boolean(onUpgrade);
   const buttonLabel = canUpgrade ? `Upgrade naar level ${location.level + 1}` : `Max level ${maxLevel} bereikt`;
@@ -24,10 +31,15 @@ export function LocationPanel({ location, onUpgrade, canUpgrade = false, maxLeve
         exit={{ opacity: 0, x: 20, scale: 0.98 }}
         transition={{ duration: 0.32, ease: 'easeOut' }}
       >
-        <div className="panel-kicker">
-          <Icon size={18} />
-          Locatie
-        </div>
+        <header className="panel-header">
+          <div className="panel-kicker">
+            <Icon size={18} />
+            Locatie
+          </div>
+          <button className="panel-close-button" type="button" onClick={onClose} aria-label="Sluit detailpaneel">
+            <X size={18} />
+          </button>
+        </header>
 
         <div className="panel-body">
           <img className="panel-image" src={location.image} alt={location.name} />
