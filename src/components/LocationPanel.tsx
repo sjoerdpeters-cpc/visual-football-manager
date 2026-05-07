@@ -4,15 +4,23 @@ import type { StadiumLocation } from '../data/locations';
 
 type LocationPanelProps = {
   location: StadiumLocation;
+  onUpgrade?: () => void;
+  canUpgrade?: boolean;
 };
 
-export function LocationPanel({ location }: LocationPanelProps) {
+export function LocationPanel({ location, onUpgrade, canUpgrade = false }: LocationPanelProps) {
   const Icon = location.icon;
+  const isTrainingField = location.id === 'training-field';
+  const buttonLabel = isTrainingField
+    ? canUpgrade
+      ? `Upgrade naar level ${location.level + 1}`
+      : 'Max level bereikt'
+    : 'Upgrade plannen';
 
   return (
     <AnimatePresence mode="wait">
       <motion.aside
-        key={location.id}
+        key={`${location.id}-${location.level}`}
         className="location-panel"
         initial={{ opacity: 0, x: 28, scale: 0.98 }}
         animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -52,9 +60,14 @@ export function LocationPanel({ location }: LocationPanelProps) {
           ))}
         </div>
 
-        <button className="upgrade-button" type="button">
+        <button
+          className="upgrade-button"
+          type="button"
+          onClick={onUpgrade}
+          disabled={!canUpgrade}
+        >
           <ArrowUpRight size={18} />
-          Upgrade plannen
+          {buttonLabel}
         </button>
       </motion.aside>
     </AnimatePresence>

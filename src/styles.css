@@ -121,12 +121,12 @@ button {
 }
 
 .side-menu {
-  top: 15vh;
+  top: 13.5vh;
   left: 1.4vw;
-  width: min(300px, 27vw);
+  width: min(220px, 20vw);
   display: grid;
-  gap: 9px;
-  padding: 12px;
+  gap: 5px;
+  padding: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   background: rgba(3, 10, 9, 0.66);
@@ -135,18 +135,18 @@ button {
 
 .side-menu-item {
   display: grid;
-  grid-template-columns: 24px 1fr 18px;
+  grid-template-columns: 18px 1fr 14px;
   align-items: center;
-  min-height: 54px;
-  gap: 12px;
+  min-height: 36px;
+  gap: 8px;
   width: 100%;
-  padding: 0 14px;
+  padding: 0 9px;
   border: 1px solid transparent;
   border-radius: 8px;
   color: rgba(247, 255, 249, 0.92);
   background: transparent;
   text-align: left;
-  font-size: 12px;
+  font-size: 10px;
   cursor: pointer;
   transition: 180ms ease;
 }
@@ -177,9 +177,9 @@ button {
   position: absolute;
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
-  margin: -24px 0 0 -24px;
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
   border: 0;
   border-radius: 999px;
   background: transparent;
@@ -204,15 +204,14 @@ button {
 .hotspot-core {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 15px;
+  height: 15px;
   background: rgba(7, 41, 31, 0.88);
   border: 2px solid rgba(169, 255, 223, 0.94);
   box-shadow: 0 0 28px rgba(83, 255, 187, 0.72);
 }
 
 .hotspot-active .hotspot-core {
-  color: #062018;
   background: #7affc6;
 }
 
@@ -365,6 +364,12 @@ button {
   margin-top: 18px;
 }
 
+.upgrade-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.54;
+  filter: saturate(0.6);
+}
+
 .overview-button {
   left: 1.4vw;
   bottom: 9.8vh;
@@ -464,14 +469,14 @@ button {
   .side-menu {
     top: 86px;
     left: 12px;
-    width: 58px;
-    padding: 8px;
+    width: 46px;
+    padding: 6px;
   }
 
   .side-menu-item {
     grid-template-columns: 1fr;
     place-items: center;
-    min-height: 46px;
+    min-height: 34px;
     padding: 0;
   }
 
@@ -552,8 +557,8 @@ button {
   }
 
   .hotspot {
-    width: 42px;
-    height: 42px;
+    width: 34px;
+    height: 34px;
   }
 
   .gallery-card span {

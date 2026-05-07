@@ -25,6 +25,46 @@ export type StadiumLocation = {
   icon: LucideIcon;
 };
 
+export type TrainingFieldLevel = {
+  level: number;
+  image: string;
+  status: string;
+  features: string[];
+};
+
+export const trainingFieldLevels: TrainingFieldLevel[] = [
+  {
+    level: 1,
+    image: '/assets/stadium/training/level-1.png',
+    status: 'Basisveld',
+    features: ['Enkel trainingsveld', 'Basis belijning', 'Open terrein', 'Lage capaciteit'],
+  },
+  {
+    level: 2,
+    image: '/assets/stadium/training/level-2.png',
+    status: 'Verbeterd veld',
+    features: ['Betere grasmat', 'Kleine tribune', 'Materiaalzone', 'Verbeterde routing'],
+  },
+  {
+    level: 3,
+    image: '/assets/stadium/training/level-3.png',
+    status: 'Professioneel',
+    features: ['Verlichting', 'Jeugdfaciliteiten', 'Analyseplek', 'Herstelzone'],
+  },
+  {
+    level: 4,
+    image: '/assets/stadium/training/level-4.png',
+    status: 'Elite complex',
+    features: ['Meerdere velden', 'Indoor support', 'Performance data', 'Medische unit'],
+  },
+  {
+    level: 5,
+    image: '/assets/stadium/training/level-5.png',
+    status: 'Topniveau',
+    features: ['Academy campus', 'Volledige verlichting', 'Pro stafruimtes', 'Maximale ontwikkeling'],
+  },
+];
+
 export const locations: StadiumLocation[] = [
   {
     id: 'main-stand',
@@ -46,10 +86,10 @@ export const locations: StadiumLocation[] = [
     description:
       'Een verlicht trainingscomplex naast het stadion waar selectie, jeugdteams en herstelgroepen dagelijks werken.',
     overviewPosition: { x: 78, y: 43 },
-    image: '/assets/stadium/training-field.jpg',
-    level: 3,
-    status: 'Operationeel',
-    features: ['Natuurgras', 'Avondverlichting', 'Jeugdveld', 'Herstelzone'],
+    image: trainingFieldLevels[0].image,
+    level: 1,
+    status: trainingFieldLevels[0].status,
+    features: trainingFieldLevels[0].features,
     icon: Goal,
   },
   {

@@ -8,8 +8,6 @@ type HotspotProps = {
 };
 
 export function Hotspot({ location, active, onSelect }: HotspotProps) {
-  const Icon = location.icon;
-
   return (
     <motion.button
       type="button"
@@ -21,9 +19,7 @@ export function Hotspot({ location, active, onSelect }: HotspotProps) {
       aria-label={location.name}
     >
       <span className="hotspot-pulse" />
-      <span className="hotspot-core">
-        <Icon size={17} strokeWidth={2.3} />
-      </span>
+      <span className="hotspot-core" />
     </motion.button>
   );
 }
