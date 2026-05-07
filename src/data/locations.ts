@@ -8,7 +8,7 @@ import {
   Trophy,
   type LucideIcon,
 } from 'lucide-react';
-import upgradeLevels from './upgradeLevels.json';
+import upgrades from './upgrades.json';
 
 export type StadiumLocation = {
   id: string;
@@ -29,11 +29,25 @@ export type StadiumLocation = {
 export type UpgradeLevel = {
   level: number;
   image: string;
+  cost: {
+    amount: number;
+    currency: string;
+  };
+  preconditions: string[];
   status: string;
   features: string[];
 };
 
-export const upgradeLevelData = upgradeLevels as Record<string, UpgradeLevel[]>;
+export type UpgradeDefinition = {
+  name: string;
+  levels: UpgradeLevel[];
+};
+
+export const upgradeDefinitions = upgrades as Record<string, UpgradeDefinition>;
+
+export const upgradeLevelData = Object.fromEntries(
+  Object.entries(upgradeDefinitions).map(([locationId, definition]) => [locationId, definition.levels]),
+) as Record<string, UpgradeLevel[]>;
 
 export const locations: StadiumLocation[] = [
   {

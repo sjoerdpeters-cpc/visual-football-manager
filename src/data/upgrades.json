@@ -1,0 +1,122 @@
+{
+  "training-field": {
+    "name": "Trainingsveld",
+    "levels": [
+      {
+        "level": 1,
+        "image": "/assets/stadium/training/level-1.png",
+        "cost": {
+          "amount": 0,
+          "currency": "EUR"
+        },
+        "preconditions": [],
+        "status": "Basisveld",
+        "features": ["Enkel trainingsveld", "Basis belijning", "Open terrein", "Lage capaciteit"]
+      },
+      {
+        "level": 2,
+        "image": "/assets/stadium/training/level-2.png",
+        "cost": {
+          "amount": 75000,
+          "currency": "EUR"
+        },
+        "preconditions": ["training-field:level-1"],
+        "status": "Verbeterd veld",
+        "features": ["Betere grasmat", "Kleine tribune", "Materiaalzone", "Verbeterde routing"]
+      },
+      {
+        "level": 3,
+        "image": "/assets/stadium/training/level-3.png",
+        "cost": {
+          "amount": 180000,
+          "currency": "EUR"
+        },
+        "preconditions": ["training-field:level-2"],
+        "status": "Professioneel",
+        "features": ["Verlichting", "Jeugdfaciliteiten", "Analyseplek", "Herstelzone"]
+      },
+      {
+        "level": 4,
+        "image": "/assets/stadium/training/level-4.png",
+        "cost": {
+          "amount": 420000,
+          "currency": "EUR"
+        },
+        "preconditions": ["training-field:level-3", "light-masts:level-3"],
+        "status": "Elite complex",
+        "features": ["Meerdere velden", "Indoor support", "Performance data", "Medische unit"]
+      },
+      {
+        "level": 5,
+        "image": "/assets/stadium/training/level-5.png",
+        "cost": {
+          "amount": 900000,
+          "currency": "EUR"
+        },
+        "preconditions": ["training-field:level-4", "light-masts:level-4"],
+        "status": "Topniveau",
+        "features": ["Academy campus", "Volledige verlichting", "Pro stafruimtes", "Maximale ontwikkeling"]
+      }
+    ]
+  },
+  "light-masts": {
+    "name": "Verlichting",
+    "levels": [
+      {
+        "level": 1,
+        "image": "/assets/stadium/lights/level-1.png",
+        "cost": {
+          "amount": 0,
+          "currency": "EUR"
+        },
+        "preconditions": [],
+        "status": "Basisverlichting",
+        "features": ["Eenvoudige masten", "Trainingslicht", "Handmatige schakeling", "Beperkte dekking"]
+      },
+      {
+        "level": 2,
+        "image": "/assets/stadium/lights/level-2.png",
+        "cost": {
+          "amount": 60000,
+          "currency": "EUR"
+        },
+        "preconditions": ["light-masts:level-1"],
+        "status": "Clubniveau",
+        "features": ["Betere lichtspreiding", "Lagere schaduw", "Wedstrijdtraining", "Efficientere armaturen"]
+      },
+      {
+        "level": 3,
+        "image": "/assets/stadium/lights/level-3.png",
+        "cost": {
+          "amount": 150000,
+          "currency": "EUR"
+        },
+        "preconditions": ["light-masts:level-2"],
+        "status": "Wedstrijdklaar",
+        "features": ["LED-armaturen", "Tv-basisnorm", "Remote dimming", "Minder energieverlies"]
+      },
+      {
+        "level": 4,
+        "image": "/assets/stadium/lights/level-4.png",
+        "cost": {
+          "amount": 350000,
+          "currency": "EUR"
+        },
+        "preconditions": ["light-masts:level-3"],
+        "status": "Broadcast niveau",
+        "features": ["Hoge luxwaarde", "Camera-proof", "Scene presets", "Onderhoudsmonitoring"]
+      },
+      {
+        "level": 5,
+        "image": "/assets/stadium/lights/level-5.png",
+        "cost": {
+          "amount": 750000,
+          "currency": "EUR"
+        },
+        "preconditions": ["light-masts:level-4"],
+        "status": "Elite verlichting",
+        "features": ["Topwedstrijdnorm", "Volledige dekking", "Slim lichtplan", "Maximale sfeerwaarde"]
+      }
+    ]
+  }
+}
