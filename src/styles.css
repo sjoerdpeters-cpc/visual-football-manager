@@ -49,14 +49,22 @@ button {
   will-change: transform, opacity;
 }
 
+.stadium-background-overview {
+  filter: saturate(1.08) contrast(1.06) brightness(1.08);
+}
+
+.stadium-background-detail {
+  filter: saturate(1.05) contrast(1.08) brightness(0.82);
+}
+
 .cinematic-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(1, 8, 6, 0.82) 0%, rgba(1, 8, 6, 0.22) 25%, rgba(1, 8, 6, 0.06) 58%, rgba(1, 8, 6, 0.7) 100%),
-    linear-gradient(180deg, rgba(3, 9, 13, 0.68) 0%, rgba(3, 9, 13, 0.08) 36%, rgba(3, 9, 13, 0.72) 100%);
+    linear-gradient(90deg, rgba(1, 8, 6, 0.64) 0%, rgba(1, 8, 6, 0.12) 25%, rgba(1, 8, 6, 0.03) 58%, rgba(1, 8, 6, 0.54) 100%),
+    linear-gradient(180deg, rgba(3, 9, 13, 0.48) 0%, rgba(3, 9, 13, 0.04) 36%, rgba(3, 9, 13, 0.6) 100%);
 }
 
 .vignette {
@@ -247,12 +255,13 @@ button {
 }
 
 .location-panel {
-  top: 2.6vh;
-  right: 1.6vw;
-  width: min(350px, 26vw);
-  max-height: 82vh;
+  top: 50%;
+  right: 3vw;
+  translate: 0 -50%;
+  width: min(520px, 38vw);
+  max-height: 76vh;
   overflow: hidden;
-  padding: 18px;
+  padding: 22px;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 8px;
   background: rgba(4, 12, 12, 0.72);
@@ -273,7 +282,7 @@ button {
 
 .panel-image {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   margin-top: 16px;
   object-fit: cover;
   border-radius: 8px;
@@ -289,7 +298,7 @@ button {
 
 .panel-title-row h2 {
   margin: 0;
-  font-size: clamp(16px, 1.45vw, 22px);
+  font-size: clamp(18px, 1.65vw, 26px);
   line-height: 1;
   text-transform: uppercase;
 }
@@ -318,12 +327,13 @@ button {
 .panel-description {
   margin: 18px 0;
   color: rgba(247, 255, 249, 0.86);
-  font-size: 12px;
-  line-height: 1.48;
+  font-size: 13px;
+  line-height: 1.55;
 }
 
 .feature-list {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin-top: 13px;
 }
@@ -334,7 +344,7 @@ button {
   gap: 12px;
   min-height: 32px;
   color: rgba(247, 255, 249, 0.88);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .feature-row svg {
@@ -489,15 +499,16 @@ button {
   .location-panel {
     top: auto;
     right: 10px;
+    translate: 0;
     bottom: calc(15vh + 12px);
-    width: min(380px, calc(100vw - 88px));
-    max-height: 42vh;
+    width: min(520px, calc(100vw - 20px));
+    max-height: 52vh;
     padding: 14px;
     overflow: auto;
   }
 
   .panel-image {
-    display: none;
+    aspect-ratio: 16 / 8;
   }
 
   .panel-title-row h2 {
@@ -549,7 +560,9 @@ button {
 
 @media (max-width: 620px) {
   .location-panel {
-    width: calc(100vw - 88px);
+    left: 10px;
+    right: 10px;
+    width: auto;
   }
 
   .feature-list {

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, Compass, RotateCcw, Shield } from 'lucide-react';
+import { Compass, RotateCcw, Shield } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import {
   locations,
@@ -12,9 +12,8 @@ import { Hotspot } from './Hotspot';
 import { LocationPanel } from './LocationPanel';
 
 export function StadiumMap() {
-  const [selectedId, setSelectedId] = useState(locations[0].id);
+  const [selectedId, setSelectedId] = useState('stadium');
   const [trainingLevel, setTrainingLevel] = useState(1);
-  const menuLocations = useMemo(() => locations.filter((location) => location.id !== 'stadium'), []);
   const enhancedLocations = useMemo(() => {
     const trainingVariant = trainingFieldLevels[trainingLevel - 1];
 
@@ -34,7 +33,11 @@ export function StadiumMap() {
   }, [trainingLevel]);
   const selected = enhancedLocations.find((location) => location.id === selectedId) ?? enhancedLocations[0];
   const overviewLocation = enhancedLocations.find((location) => location.id === 'stadium') ?? enhancedLocations[0];
-  const selectLocation = (location: StadiumLocation) => setSelectedId(location.id);
+  const detailOpen = selected.id !== 'stadium';
+  const selectLocation = (location: StadiumLocation) => {
+    setSelectedId((currentId) => (currentId === location.id ? overviewLocation.id : location.id));
+  };
+  const closeDetail = () => setSelectedId(overviewLocation.id);
   const upgradeTrainingField = () => setTrainingLevel((level) => Math.min(level + 1, trainingFieldLevels.length));
 
   return (
@@ -42,7 +45,7 @@ export function StadiumMap() {
       <AnimatePresence mode="wait">
         <motion.div
           key={selected.id}
-          className="stadium-background"
+          className={`stadium-background ${detailOpen ? 'stadium-background-detail' : 'stadium-background-overview'}`}
           style={{
             backgroundImage: `url(${selected.id === 'stadium' ? overviewImage : selected.image})`,
             transformOrigin: `${selected.overviewPosition.x}% ${selected.overviewPosition.y}%`,
@@ -67,26 +70,6 @@ export function StadiumMap() {
         </div>
       </section>
 
-      <nav className="side-menu" aria-label="Stadion locaties">
-        {menuLocations.map((baseLocation) => {
-          const location =
-            enhancedLocations.find((enhancedLocation) => enhancedLocation.id === baseLocation.id) ?? baseLocation;
-          const Icon = location.icon;
-          return (
-            <button
-              className={`side-menu-item ${selected.id === location.id ? 'side-menu-item-active' : ''}`}
-              type="button"
-              key={location.id}
-              onClick={() => selectLocation(location)}
-            >
-              <Icon size={15} />
-              <span>{location.name}</span>
-              <ChevronLeft size={12} />
-            </button>
-          );
-        })}
-      </nav>
-
       <div className="hotspot-layer">
         {enhancedLocations.map((location) => (
           <Hotspot
@@ -98,21 +81,25 @@ export function StadiumMap() {
         ))}
       </div>
 
-      <div className="status-chip">
-        <Compass size={17} />
-        Focus: {selected.shortName}
-      </div>
+      {detailOpen && (
+        <>
+          <div className="status-chip">
+            <Compass size={17} />
+            Focus: {selected.shortName}
+          </div>
 
-      <LocationPanel
-        location={selected}
-        onUpgrade={selected.id === 'training-field' ? upgradeTrainingField : undefined}
-        canUpgrade={selected.id === 'training-field' && trainingLevel < trainingFieldLevels.length}
-      />
+          <LocationPanel
+            location={selected}
+            onUpgrade={selected.id === 'training-field' ? upgradeTrainingField : undefined}
+            canUpgrade={selected.id === 'training-field' && trainingLevel < trainingFieldLevels.length}
+          />
 
-      <button className="overview-button" type="button" onClick={() => selectLocation(overviewLocation)}>
-        <RotateCcw size={18} />
-        Terug naar overzicht
-      </button>
+          <button className="overview-button" type="button" onClick={closeDetail}>
+            <RotateCcw size={18} />
+            Terug naar overzicht
+          </button>
+        </>
+      )}
 
       <BottomGallery locations={enhancedLocations} selectedId={selected.id} onSelect={selectLocation} />
     </main>

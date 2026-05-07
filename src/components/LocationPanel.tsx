@@ -60,15 +60,17 @@ export function LocationPanel({ location, onUpgrade, canUpgrade = false }: Locat
           ))}
         </div>
 
-        <button
-          className="upgrade-button"
-          type="button"
-          onClick={onUpgrade}
-          disabled={!canUpgrade}
-        >
-          <ArrowUpRight size={18} />
-          {buttonLabel}
-        </button>
+        {isTrainingField && (
+          <button
+            className="upgrade-button"
+            type="button"
+            onClick={onUpgrade}
+            disabled={!canUpgrade}
+          >
+            <ArrowUpRight size={18} />
+            {buttonLabel}
+          </button>
+        )}
       </motion.aside>
     </AnimatePresence>
   );
