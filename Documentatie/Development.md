@@ -8,3 +8,4 @@
 - Gebruik Framer Motion voor zichtbare overgangen en hover/tap feedback.
 - Gebruik Tailwind als toolchain, met projectspecifieke styling in `src/styles.css` zolang er nog geen component design system is.
 - Verifieer na wijzigingen minimaal met `npm run build`.
+- Deploy na elke afgeronde wijziging naar Vercel, tenzij expliciet gevraagd wordt om dit niet te doen.
